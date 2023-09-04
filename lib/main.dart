@@ -58,7 +58,7 @@ class _SoruSayfasiState extends State<SoruSayfasi> {
           flex: 1,
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 6.0),
-            child: Row(
+            child: Wrap(
               children: <Widget>[
                 Expanded(
                     child: Padding(
