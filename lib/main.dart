@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'constants.dart';
+
+
 void main() => runApp(BilgiTesti());
 
 class BilgiTesti extends StatelessWidget {
@@ -24,7 +27,7 @@ class SoruSayfasi extends StatefulWidget {
 class _SoruSayfasiState extends State<SoruSayfasi> {
 
   List<Widget> secimler = [
-    dogruIcon,dogruIcon,dogruIcon,yanlisIcon,yanlisIcon
+
   ];
   @override
   Widget build(BuildContext context) {
@@ -69,7 +72,11 @@ class _SoruSayfasiState extends State<SoruSayfasi> {
                             size: 30.0,
                             color: Colors.white,
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            setState(() {
+                              secimler.add(kYanlisIcon);
+                            });
+                          },
                         ))),
                 Expanded(
                   child: Padding(
@@ -83,7 +90,11 @@ class _SoruSayfasiState extends State<SoruSayfasi> {
                         Icons.thumb_up,
                         size: 30.0,
                         color: Colors.white,),
-                      onPressed: () {},
+                      onPressed: () {
+                        setState(() {
+                          secimler.add(kDogruIcon);
+                        });
+                      },
                     ),
                   ),
                 ),
@@ -95,5 +106,3 @@ class _SoruSayfasiState extends State<SoruSayfasi> {
     );
   }
 }
-Icon dogruIcon = Icon(Icons.mood, color: Colors.green);
-Icon yanlisIcon = Icon(Icons.mood_bad, color: Colors.red);
