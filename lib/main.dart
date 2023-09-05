@@ -35,8 +35,8 @@ class _SoruSayfasiState extends State<SoruSayfasi> {
     "Dünya düzdür",
     "Kaju fıstığı aslında bir meyvenin sapıdır",
     "Fatih Sultan Mehmet hiç patates yememiştir",
-    "Fransızlar 80 demek için, 4 - 20 der"
   ];
+  List <bool> yanitlar = [false,true,false,false,true,true];
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -81,8 +81,14 @@ class _SoruSayfasiState extends State<SoruSayfasi> {
                             color: Colors.white,
                           ),
                           onPressed: () {
+                            bool dogruYanit = yanitlar[i];
                             setState(() {
-                              secimler.add(kYanlisIcon);
+                              if(dogruYanit == false){
+                                secimler.add(kDogruIcon);
+                              }
+                              else {
+                                secimler.add((kYanlisIcon));
+                              }
                               i++;
                             });
                           },
@@ -100,8 +106,9 @@ class _SoruSayfasiState extends State<SoruSayfasi> {
                         size: 30.0,
                         color: Colors.white,),
                       onPressed: () {
+                        bool dogruYanit = yanitlar[i];
                         setState(() {
-                          secimler.add(kDogruIcon);
+                          dogruYanit == true?secimler.add(kDogruIcon):secimler.add(kYanlisIcon);
                           i++;
                         });
                       },
