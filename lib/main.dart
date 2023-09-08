@@ -28,7 +28,7 @@ class SoruSayfasi extends StatefulWidget {
 
 class _SoruSayfasiState extends State<SoruSayfasi> {
 
-  int i = 0;
+
   List<Widget> secimler = [];
 
   TestVeri test_1 = TestVeri();
@@ -45,7 +45,7 @@ class _SoruSayfasiState extends State<SoruSayfasi> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                test_1.soruBankasi[i].soruMetni,
+                test_1.getSoruMetni(),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 20.0,
@@ -77,17 +77,15 @@ class _SoruSayfasiState extends State<SoruSayfasi> {
                             color: Colors.white,
                           ),
                           onPressed: () {
-                            bool dogruYanit = test_1.soruBankasi[i].soruYaniti;
+                            bool dogruYanit = test_1.getSoruYaniti();
                             setState(() {
-                               if(i!=5) {
                                  if (dogruYanit == false) {
                                    secimler.add(kDogruIcon);
                                  }
                                  else {
                                    secimler.add((kYanlisIcon));
                                  }
-                                 i++;
-                              }
+                                 test_1.sonrakiSoru();
                             });
                           },
                         ))),
@@ -104,13 +102,13 @@ class _SoruSayfasiState extends State<SoruSayfasi> {
                         size: 30.0,
                         color: Colors.white,),
                       onPressed: () {
-                        bool dogruYanit = test_1.soruBankasi[i].soruYaniti;
+                        bool dogruYanit = test_1.getSoruYaniti();
                         setState(() {
-                          if(i!=5) {
+
                             dogruYanit == true ? secimler.add(kDogruIcon)
                                 : secimler.add(kYanlisIcon);
-                            i++;
-                          }
+
+                            test_1.sonrakiSoru();
                         });
                       },
                     ),
