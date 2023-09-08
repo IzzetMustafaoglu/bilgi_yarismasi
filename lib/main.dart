@@ -1,3 +1,5 @@
+import 'package:bilgi_yarismasi/soru.dart';
+import 'package:bilgi_yarismasi/test_veri.dart';
 import 'package:flutter/material.dart';
 
 import 'constants.dart';
@@ -29,15 +31,7 @@ class _SoruSayfasiState extends State<SoruSayfasi> {
   int i = 0;
   List<Widget> secimler = [];
 
-
-  List <Soru> soruBankasi = [
-    Soru(soruMetni: "Titanic gelmiş geçmiş en büyük gemidir", soruYaniti: false),
-    Soru(soruMetni: "Dünyadaki tavuk sayısı insan sayısından fazladır", soruYaniti: true),
-    Soru(soruMetni: "Kelebeklerin ömrü bir gündür", soruYaniti: false),
-    Soru(soruMetni: "Dünya düzdür", soruYaniti: false),
-    Soru(soruMetni: "Kaju fıstığı aslında bir meyvenin sapıdır", soruYaniti: true),
-    Soru(soruMetni: "Fatih Sultan Mehmet hiç patates yememiştir", soruYaniti: true),
-  ];
+  TestVeri test_1 = TestVeri();
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +45,7 @@ class _SoruSayfasiState extends State<SoruSayfasi> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                soruBankasi[i].soruMetni,
+                test_1.soruBankasi[i].soruMetni,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 20.0,
@@ -83,7 +77,7 @@ class _SoruSayfasiState extends State<SoruSayfasi> {
                             color: Colors.white,
                           ),
                           onPressed: () {
-                            bool dogruYanit = soruBankasi[i].soruYaniti;
+                            bool dogruYanit = test_1.soruBankasi[i].soruYaniti;
                             setState(() {
                                if(i!=5) {
                                  if (dogruYanit == false) {
@@ -93,7 +87,7 @@ class _SoruSayfasiState extends State<SoruSayfasi> {
                                    secimler.add((kYanlisIcon));
                                  }
                                  i++;
-                               }
+                              }
                             });
                           },
                         ))),
@@ -110,11 +104,10 @@ class _SoruSayfasiState extends State<SoruSayfasi> {
                         size: 30.0,
                         color: Colors.white,),
                       onPressed: () {
-                        bool dogruYanit = soruBankasi[i].soruYaniti;
+                        bool dogruYanit = test_1.soruBankasi[i].soruYaniti;
                         setState(() {
                           if(i!=5) {
-                            dogruYanit == true
-                                ? secimler.add(kDogruIcon)
+                            dogruYanit == true ? secimler.add(kDogruIcon)
                                 : secimler.add(kYanlisIcon);
                             i++;
                           }
@@ -130,11 +123,4 @@ class _SoruSayfasiState extends State<SoruSayfasi> {
       ],
     );
   }
-}
-
-class Soru {
-  String soruMetni;
-  bool soruYaniti;
-
-  Soru({required this.soruMetni,required this.soruYaniti});
 }
