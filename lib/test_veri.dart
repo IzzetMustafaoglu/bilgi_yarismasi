@@ -22,6 +22,16 @@ class TestVeri{
 
   void sonrakiSoru(){
     if(_i + 1 < _soruBankasi.length)  _i++;
-
+  }
+  bool testBittiMi(){
+    if(_i + 1 >= _soruBankasi.length){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
+  void testiSifirla(){
+    _i = 0;
   }
 }

@@ -33,6 +33,43 @@ class _SoruSayfasiState extends State<SoruSayfasi> {
 
   TestVeri test_1 = TestVeri();
 
+  void butonFonksiyonu(bool secilenButon){
+    if(test_1.testBittiMi()==true){
+     // aletDialog Gösterecek
+     // İndex sıfırla
+     // secimleri sıfırla
+      showDialog(
+          context: context,
+          builder: (BuildContext context){
+            return AlertDialog(
+             title: new Text("Alert Dialog title"),
+             content: new Text("Alet Dialog body"),
+             actions: <Widget>[
+               new TextButton(
+                  child: new Text("Close"),
+                  onPressed: (){
+                    Navigator.of(context).pop();
+            },
+             ],
+            );
+          }
+      );
+      test_1.testiSifirla();
+      secimler = [];
+    }
+    else {
+      setState(() {
+        if (test_1.getSoruYaniti() == secilenButon) {
+          secimler.add(kDogruIcon);
+        }
+        else {
+          secimler.add((kYanlisIcon));
+        }
+        test_1.sonrakiSoru();
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -77,16 +114,8 @@ class _SoruSayfasiState extends State<SoruSayfasi> {
                             color: Colors.white,
                           ),
                           onPressed: () {
-                            bool dogruYanit = test_1.getSoruYaniti();
-                            setState(() {
-                                 if (dogruYanit == false) {
-                                   secimler.add(kDogruIcon);
-                                 }
-                                 else {
-                                   secimler.add((kYanlisIcon));
-                                 }
-                                 test_1.sonrakiSoru();
-                            });
+                            butonFonksiyonu(false);
+
                           },
                         ))),
                 Expanded(
@@ -102,14 +131,7 @@ class _SoruSayfasiState extends State<SoruSayfasi> {
                         size: 30.0,
                         color: Colors.white,),
                       onPressed: () {
-                        bool dogruYanit = test_1.getSoruYaniti();
-                        setState(() {
-
-                            dogruYanit == true ? secimler.add(kDogruIcon)
-                                : secimler.add(kYanlisIcon);
-
-                            test_1.sonrakiSoru();
-                        });
+                        butonFonksiyonu(true);
                       },
                     ),
                   ),
