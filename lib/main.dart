@@ -39,20 +39,25 @@ class _SoruSayfasiState extends State<SoruSayfasi> {
      // İndex sıfırla
      // secimleri sıfırla
       showDialog(
-          context: context,
-          builder: (BuildContext context){
-            return AlertDialog(
-             title: new Text("Alert Dialog title"),
-             content: new Text("Alet Dialog body"),
-             actions: <Widget>[
-               new TextButton(
-                  child: new Text("Close"),
-                  onPressed: (){
-                    Navigator.of(context).pop();
-            },
-             ],
-            );
-          }
+        context: context, // Bu context, genellikle bir widget içinde bulunur.
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text("Bravo Testi Bitirdiniz"),
+            //content: Text("Alert Dialog İçeriği"),
+            actions: <Widget>[
+              TextButton(
+                child: Text("Başa Dön"),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  setState(() {
+                    test_1.testiSifirla();
+                    secimler = [];
+                  });
+                },
+              ),
+            ],
+          );
+        },
       );
       test_1.testiSifirla();
       secimler = [];
